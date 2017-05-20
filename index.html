@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carousel</title>
+<script src="https://use.fontawesome.com/637f829858.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.container{
+  background-color: lightgrey;
+  margin: auto;
+}
+.imgContainer{
+  margin: auto;
+  height: 400px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  position: relative;
+  border: 20px solid white;
+}
+.none{
+  opacity: 0;
+  transition: opacity 1s;
+}
+.current{
+  opacity: 1;
+  transition: opacity 1s;
+}
+img{
+  position: absolute;
+  padding: 0 20px 0 20px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: white
+}
+.panel{
+  left: 5%;
+  top: 70%;
+  width: 90%;
+  position: absolute;
+  margin: auto;
+  z-index: 1;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 5px 10px 0 10px;
+}
+.roundBtn{
+  width: 50px;
+  height: 50px;
+  float: left;
+  border-radius: 50px;
+  background-color: #1C1C1C;
+  margin: 0 10px 0 0;
+  color: white;
+  padding-top: 8px;
+  font-weight: 900;
+  font-size: 25px;
+  margin-top: 10px;
+}
+.roundBtn:hover{
+  background-color: #778899;
+  cursor: pointer;
+}
+.leftArrow{
+  padding-left: 15px;
+}
+.rightArrow{
+  padding-left: 20px;
+}
+.textBlock{
+  float: left;
+  color: white;
+  font-size: 25px;
+  width: 380px;
+  margin-left: 20px;
+}
+.bigBtn{
+  width: 240px;
+  height: 50px;
+  background: linear-gradient(to top, #FF8C00,  #FFFFE0);
+  color:  #8B2500;
+  float: right;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  padding: 12px 0px 12px 20px;
+  text-transform: uppercase;
+}
+.bigBtn:hover{
+  cursor: pointer;
+  background: linear-gradient(to top, #fefcea, #f1da36);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="imgContainer">
+    <div><img class="current" src="img/1.jpg" alt=""></div>
+    <div><img src="img/2.jpg" alt=""></div>
+    <div><img src="img/3.jpg" alt=""></div>
+    <div class="panel">
+      <div class="roundBtn leftArrow" id="prevBtn">
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+      </div>
+      <div class="roundBtn rightArrow" id="nextBtn">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+      </div>
+      <div class="textBlock">You can do it yourself</div>
+      <div class="bigBtn">Start Learning Now</div>
+    </div>
+  </div>
+</div>
+<script>
+  var counter=0;
+  var imgs = document.getElementsByTagName("img");
+  var nextBtn = document.getElementById("nextBtn");
+  var prevBtn = document.getElementById("prevBtn")
+  function nextSlide(){
+    imgs[counter].className = "none"
+    counter++
+    if (counter>imgs.length-1) {
+      counter=0;
+    }
+    imgs[counter].className = "current";
+  };
+  function prevSlide() {
+    imgs[counter].className = "none"
+    counter--
+    if (counter<0) {
+      counter=imgs.length-1;
+    }
+    imgs[counter].className = "current";
+  };
+  nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
+</script>
+</body>
+</html>
